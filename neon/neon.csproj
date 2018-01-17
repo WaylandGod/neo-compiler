@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <Copyright>2016-2017 The Neo Project</Copyright>
     <AssemblyTitle>Neo.Compiler.MSIL</AssemblyTitle>
@@ -17,21 +16,17 @@
     <Product>Neo.Compiler.MSIL</Product>
     <Description>Neo.Compiler.MSIL</Description>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>RELEASE;NETCOREAPP1_0</DefineConstants>
     <DebugType>none</DebugType>
     <DebugSymbols>False</DebugSymbols>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="AntShares.MonoCecil" Version="1.0.0" />
     <PackageReference Include="Neo.VM" Version="2.0.3" />
   </ItemGroup>
-
 </Project>

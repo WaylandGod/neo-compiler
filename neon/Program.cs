@@ -85,6 +85,7 @@ namespace Neo.Compiler
 
                 NeoModule am = conv.Convert(mod);
                 bytes = am.Build();
+                string hex = BitConverter.ToString(bytes);
                 log.Log("convert succ");
 
 

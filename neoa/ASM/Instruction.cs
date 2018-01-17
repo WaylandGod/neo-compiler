@@ -128,6 +128,7 @@ namespace Neo.Compiler.ASM
                     throw new CompilerException(LineNumber, ERR_SYNTAX_ERROR);
             }
         }
+        
 
         private byte[] ProcessAppCall()
         {
