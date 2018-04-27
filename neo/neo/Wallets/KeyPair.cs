@@ -67,26 +67,35 @@ namespace Neo.Wallets
             }
         }
 
-        public string Export(string passphrase, int N = 16384, int r = 8, int p = 8)
-        {
-            using (Decrypt())
-            {
-                UInt160 script_hash = Contract.CreateSignatureRedeemScript(PublicKey).ToScriptHash();
-                string address = Wallet.ToAddress(script_hash);
-                byte[] addresshash = Encoding.ASCII.GetBytes(address).Sha256().Sha256().Take(4).ToArray();
-                byte[] derivedkey = SCrypt.DeriveKey(Encoding.UTF8.GetBytes(passphrase), addresshash, N, r, p, 64);
-                byte[] derivedhalf1 = derivedkey.Take(32).ToArray();
-                byte[] derivedhalf2 = derivedkey.Skip(32).ToArray();
-                byte[] encryptedkey = XOR(PrivateKey, derivedhalf1).AES256Encrypt(derivedhalf2);
-                byte[] buffer = new byte[39];
-                buffer[0] = 0x01;
-                buffer[1] = 0x42;
-                buffer[2] = 0xe0;
-                Buffer.BlockCopy(addresshash, 0, buffer, 3, addresshash.Length);
-                Buffer.BlockCopy(encryptedkey, 0, buffer, 7, encryptedkey.Length);
-                return buffer.Base58CheckEncode();
-            }
-        }
+public string Export(string passphrase, int N = 16384, int r = 8, int p = 8)
+{
+    using (Decrypt())
+    {
+        UInt160 script_hash = Contract.
+            CreateSignatureRedeemScript(PublicKey).ToScriptHash();
+        
+        string address = Wallet.ToAddress(script_hash);
+        byte[] addresshash = Encoding.ASCII.GetBytes(address)
+            .Sha256().Sha256().Take(4).ToArray();
+        
+        byte[] derivedkey = SCrypt.DeriveKey(
+            Encoding.UTF8.GetBytes(passphrase), addresshash, N, r, p, 64);
+        
+        byte[] derivedhalf1 = derivedkey.Take(32).ToArray();
+        byte[] derivedhalf2 = derivedkey.Skip(32).ToArray();
+        
+        byte[] encryptedkey = XOR(PrivateKey, derivedhalf1)
+            .AES256Encrypt(derivedhalf2);
+        
+        byte[] buffer = new byte[39];
+        buffer[0] = 0x01;
+        buffer[1] = 0x42;
+        buffer[2] = 0xe0;
+        Buffer.BlockCopy(addresshash, 0, buffer, 3, addresshash.Length);
+        Buffer.BlockCopy(encryptedkey, 0, buffer, 7, encryptedkey.Length);
+        return buffer.Base58CheckEncode();
+    }
+}
 
         public override int GetHashCode()
         {

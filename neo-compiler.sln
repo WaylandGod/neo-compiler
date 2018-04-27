@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "net-core-test", "net-core-t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "neo-cli", "neo-cli\neo-cli\neo-cli.csproj", "{16546F56-827B-4B70-9F4C-CC5A9A53B1A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "neo.UnitTests", "neo\neo.UnitTests\neo.UnitTests.csproj", "{A341C7E6-3B8C-4A69-9061-8CDB1AEEE393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fixed-point-test", "fixed-point-test\fixed-point-test.csproj", "{9428DD8A-96A8-4C68-8EA6-C43B131002B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{16546F56-827B-4B70-9F4C-CC5A9A53B1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16546F56-827B-4B70-9F4C-CC5A9A53B1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16546F56-827B-4B70-9F4C-CC5A9A53B1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A341C7E6-3B8C-4A69-9061-8CDB1AEEE393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A341C7E6-3B8C-4A69-9061-8CDB1AEEE393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A341C7E6-3B8C-4A69-9061-8CDB1AEEE393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A341C7E6-3B8C-4A69-9061-8CDB1AEEE393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9428DD8A-96A8-4C68-8EA6-C43B131002B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9428DD8A-96A8-4C68-8EA6-C43B131002B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9428DD8A-96A8-4C68-8EA6-C43B131002B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9428DD8A-96A8-4C68-8EA6-C43B131002B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

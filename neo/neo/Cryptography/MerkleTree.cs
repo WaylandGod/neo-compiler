@@ -28,6 +28,7 @@ namespace Neo.Cryptography
         {
             if (leaves.Length == 0) throw new ArgumentException();
             if (leaves.Length == 1) return leaves[0];
+            //2 leaves -> 1 parents, 3 leaves -> 2 parents ...
             MerkleTreeNode[] parents = new MerkleTreeNode[(leaves.Length + 1) / 2];
             for (int i = 0; i < parents.Length; i++)
             {
@@ -43,7 +44,14 @@ namespace Neo.Cryptography
                     parents[i].RightChild = leaves[i * 2 + 1];
                     leaves[i * 2 + 1].Parent = parents[i];
                 }
-                parents[i].Hash = new UInt256(Crypto.Default.Hash256(parents[i].LeftChild.Hash.ToArray().Concat(parents[i].RightChild.Hash.ToArray()).ToArray()));
+                parents[i].Hash = new UInt256(
+                    Crypto.Default
+                        .Hash256(
+                            parents[i].LeftChild.Hash.ToArray()
+                            .Concat(parents[i].RightChild.Hash.ToArray())
+                            .ToArray()
+                        )
+                    );
             }
             return Build(parents); //TailCall
         }

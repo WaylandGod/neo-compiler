@@ -106,7 +106,8 @@ namespace Neo.Cryptography
         {
             using (Murmur3 murmur = new Murmur3(seed))
             {
-                return murmur.ComputeHash(value.ToArray()).ToUInt32(0);
+                var b = murmur.ComputeHash(value.ToArray());
+                return b.ToUInt32(0);
             }
         }
 

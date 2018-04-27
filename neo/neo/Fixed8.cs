@@ -14,13 +14,13 @@ namespace Neo
         private const long D = 100000000;
         internal long value;
 
-        public static readonly Fixed8 MaxValue = new Fixed8 { value = long.MaxValue };
+        public static readonly Fixed8 MaxValue = new Fixed8 {value = long.MaxValue};
 
-        public static readonly Fixed8 MinValue = new Fixed8 { value = long.MinValue };
+        public static readonly Fixed8 MinValue = new Fixed8 {value = long.MinValue};
 
-        public static readonly Fixed8 One = new Fixed8 { value = D };
+        public static readonly Fixed8 One = new Fixed8 {value = D};
 
-        public static readonly Fixed8 Satoshi = new Fixed8 { value = 1 };
+        public static readonly Fixed8 Satoshi = new Fixed8 {value = 1};
 
         public static readonly Fixed8 Zero = default(Fixed8);
 
@@ -74,7 +74,7 @@ namespace Neo
         public override bool Equals(object obj)
         {
             if (!(obj is Fixed8)) return false;
-            return Equals((Fixed8)obj);
+            return Equals((Fixed8) obj);
         }
 
         public static Fixed8 FromDecimal(decimal value)
@@ -84,7 +84,7 @@ namespace Neo
                 throw new OverflowException();
             return new Fixed8
             {
-                value = (long)value
+                value = (long) value
             };
         }
 
@@ -102,6 +102,7 @@ namespace Neo
                 if (first.CompareTo(other) < 0)
                     first = other;
             }
+
             return first;
         }
 
@@ -112,6 +113,7 @@ namespace Neo
                 if (first.CompareTo(other) > 0)
                     first = other;
             }
+
             return first;
         }
 
@@ -127,17 +129,17 @@ namespace Neo
 
         public override string ToString()
         {
-            return ((decimal)this).ToString(CultureInfo.InvariantCulture);
+            return ((decimal) this).ToString(CultureInfo.InvariantCulture);
         }
 
         public string ToString(string format)
         {
-            return ((decimal)this).ToString(format);
+            return ((decimal) this).ToString(format);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return ((decimal)this).ToString(format, formatProvider);
+            return ((decimal) this).ToString(format, formatProvider);
         }
 
         public static bool TryParse(string s, out Fixed8 result)
@@ -148,22 +150,24 @@ namespace Neo
                 result = default(Fixed8);
                 return false;
             }
+
             d *= D;
             if (d < long.MinValue || d > long.MaxValue)
             {
                 result = default(Fixed8);
                 return false;
             }
+
             result = new Fixed8
             {
-                value = (long)d
+                value = (long) d
             };
             return true;
         }
 
         public static explicit operator decimal(Fixed8 value)
         {
-            return value.value / (decimal)D;
+            return value.value / (decimal) D;
         }
 
         public static explicit operator long(Fixed8 value)
@@ -203,11 +207,11 @@ namespace Neo
 
         public static Fixed8 operator *(Fixed8 x, Fixed8 y)
         {
-            const ulong QUO = (1ul << 63) / (D >> 1);
-            const ulong REM = (1ul << 63) % (D >> 1);
+            ulong QUO = (1ul << 63) / (D >> 1);
+            ulong REM = (1ul << 63) % (D >> 1);
             int sign = Math.Sign(x.value) * Math.Sign(y.value);
-            ulong ux = (ulong)Math.Abs(x.value);
-            ulong uy = (ulong)Math.Abs(y.value);
+            ulong ux = (ulong) Math.Abs(x.value);
+            ulong uy = (ulong) Math.Abs(y.value);
             ulong xh = ux >> 32;
             ulong xl = ux & 0x00000000fffffffful;
             ulong yh = uy >> 32;
@@ -224,7 +228,7 @@ namespace Neo
             if (rh >= D)
                 throw new OverflowException();
             ulong r = rh * QUO + (rh * REM + rl) / D;
-            x.value = (long)r * sign;
+            x.value = (long) r * sign;
             return x;
         }
 
